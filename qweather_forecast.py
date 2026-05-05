@@ -8,7 +8,7 @@ API_HOST = 'mj4d92etey.re.qweatherapi.com'
 
 def get_location_id(city_name):
     """Get the location ID for a given city name."""
-    url = f"https://{API_HOST}/v2/city/lookup"
+    url = f"https://{API_HOST}/geo/v2/city/lookup"
     params = {
         'location': city_name,
         'key': API_KEY,
