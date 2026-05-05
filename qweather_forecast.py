@@ -82,7 +82,7 @@ def main(city_name):
             temp_max = day.get('tempMax')
             temp_min = day.get('tempMin')
             print(f"{date}: {text_day}, {temp_min}-{temp_max}°C")
-    except Exception as e:
+    except (ValueError, requests.RequestException, KeyError, IndexError, IOError) as e:
         print(f"ERROR: {str(e)}", file=sys.stderr)
         import traceback
         print(f"Stack trace:\n{traceback.format_exc()}", file=sys.stderr)

@@ -103,7 +103,10 @@ python qweather_forecast.py 深圳
 ```
 codex/
 ├── qweather_forecast.py    # 主程序脚本
+├── .env.example            # 环境变量配置模板
+├── .gitignore              # Git 忽略文件配置
 ├── README.md               # 项目说明文档
+├── TROUBLESHOOTING.md      # 故障排查指南
 └── LICENSE                 # MIT 许可证
 ```
 
@@ -149,7 +152,9 @@ codex/
 
 MIT License - 详见 [LICENSE](LICENSE) 文件
 
-## 注意事项
+## 安全提示
 
-- 当前使用预配置的 API 密钥和自定义 API 主机
-- 如需使用自己的 API 密钥，请访问 [和风天气开发平台](https://dev.qweather.com/) 注册申请
+- ⚠️ **永远不要将 `.env` 文件提交到 Git** - 它包含你的 API 密钥
+- `.gitignore` 已配置为自动忽略 `.env` 文件
+- 如需使用自己的 API 凭证，请访问 [和风天气开发平台](https://dev.qweather.com/) 注册申请
+- 复制 `.env.example` 为 `.env` 并填入你的凭证

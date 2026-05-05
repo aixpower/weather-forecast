@@ -1,5 +1,8 @@
 # Environment variables (contains sensitive information)
 .env
+SECURITY_AUDIT.md
+TROUBLESHOOTING.md
+
 
 # Python
 __pycache__/
