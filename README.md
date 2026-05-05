@@ -2,6 +2,8 @@
 
 基于和风天气 API 的城市天气预报查询工具，支持获取全球城市的 7 天天气预报。
 
+[English Version](./README_EN.md)
+
 ## 功能特性
 
 - 🌍 **全球城市查询** - 支持中文和英文城市名搜索
@@ -49,11 +51,13 @@ QWEATHER_API_HOST=your_custom_api_host_here
 Windows:
 ```cmd
 set QWEATHER_API_KEY=your_actual_api_key_here
+set QWEATHER_API_HOST=your_custom_api_host_here
 ```
 
 Linux/Mac:
 ```bash
 export QWEATHER_API_KEY=your_actual_api_key_here
+export QWEATHER_API_HOST=your_custom_api_host_here
 ```
 
 ## 使用方法
@@ -61,7 +65,7 @@ export QWEATHER_API_KEY=your_actual_api_key_here
 运行脚本并传入城市名称作为参数：
 
 ```bash
-python qweather_forecast.py <城市名称>
+python qweather_forecast.py <city_name>
 ```
 
 ### 使用示例
@@ -105,8 +109,8 @@ codex/
 ├── qweather_forecast.py    # 主程序脚本
 ├── .env.example            # 环境变量配置模板
 ├── .gitignore              # Git 忽略文件配置
-├── README.md               # 项目说明文档
-├── TROUBLESHOOTING.md      # 故障排查指南
+├── README.md               # 项目说明文档 (中文)
+├── README_EN.md            # 项目说明文档 (英文)
 └── LICENSE                 # MIT 许可证
 ```
 
