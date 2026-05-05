@@ -2,16 +2,39 @@ import os
 import sys
 import requests
 
-API_KEY = '75edd03acdf84276a93daec60f60bdf8'
-API_HOST = 'mj4d92etey.re.qweatherapi.com'
+
+def load_config():
+    """Load configuration from environment variables or .env file."""
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+    
+    api_key = os.getenv('QWEATHER_API_KEY')
+    api_host = os.getenv('QWEATHER_API_HOST')
+    
+    if not api_key:
+        raise ValueError(
+            "QWEATHER_API_KEY environment variable is not set. "
+            "Please set it or create a .env file with your API key."
+        )
+    
+    if not api_host:
+        raise ValueError(
+            "QWEATHER_API_HOST environment variable is not set. "
+            "Please set it or create a .env file with your custom API host from https://dev.qweather.com/"
+        )
+    
+    return api_key, api_host
 
 
-def get_location_id(city_name):
+def get_location_id(city_name, api_key, api_host):
     """Get the location ID for a given city name."""
-    url = f"https://{API_HOST}/geo/v2/city/lookup"
+    url = f"https://{api_host}/geo/v2/city/lookup"
     params = {
         'location': city_name,
-        'key': API_KEY,
+        'key': api_key,
     }
     resp = requests.get(url, params=params, timeout=10)
     resp.raise_for_status()
@@ -21,12 +44,12 @@ def get_location_id(city_name):
     return data['location'][0]['id']
 
 
-def get_weather_forecast(location_id):
+def get_weather_forecast(location_id, api_key, api_host):
     """Get the 7 day weather forecast for a location ID."""
-    url = f"https://{API_HOST}/v7/weather/7d"
+    url = f"https://{api_host}/v7/weather/7d"
     params = {
         'location': location_id,
-        'key': API_KEY,
+        'key': api_key,
     }
     resp = requests.get(url, params=params, timeout=10)
     resp.raise_for_status()
@@ -34,8 +57,9 @@ def get_weather_forecast(location_id):
 
 
 def main(city_name):
-    location_id = get_location_id(city_name)
-    forecast_data = get_weather_forecast(location_id)
+    api_key, api_host = load_config()
+    location_id = get_location_id(city_name, api_key, api_host)
+    forecast_data = get_weather_forecast(location_id, api_key, api_host)
     daily_list = forecast_data.get('daily', [])
     if not daily_list:
         print(f"No forecast data for {city_name}")

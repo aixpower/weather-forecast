@@ -11,10 +11,49 @@
 
 ## 安装依赖
 
-项目依赖 `requests` 库，使用前请安装：
+项目依赖 `requests` 库，可选依赖 `python-dotenv` 用于加载环境变量：
 
 ```bash
-pip install requests
+pip install requests python-dotenv
+```
+
+## 配置
+
+### 1. 获取 API 凭证
+
+访问 [和风天气开发平台](https://dev.qweather.com/) 注册账号并创建项目，获取：
+- API Key
+- 定制的 API Host
+
+### 2. 配置环境变量
+
+有两种方式配置：
+
+#### 方式一：使用 .env 文件（推荐）
+
+复制 `.env.example` 为 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+编辑 `.env` 文件，填入你的 API 密钥和定制的 API Host：
+
+```env
+QWEATHER_API_KEY=your_actual_api_key_here
+QWEATHER_API_HOST=your_custom_api_host_here
+```
+
+#### 方式二：设置环境变量
+
+Windows:
+```cmd
+set QWEATHER_API_KEY=your_actual_api_key_here
+```
+
+Linux/Mac:
+```bash
+export QWEATHER_API_KEY=your_actual_api_key_here
 ```
 
 ## 使用方法
@@ -67,6 +106,31 @@ codex/
 ├── README.md               # 项目说明文档
 └── LICENSE                 # MIT 许可证
 ```
+
+## 和风天气定价说明
+
+和风天气开发服务采用按量计费模式，每月享有免费额度。
+
+### 天气和基础服务
+
+包括：天气预报、分钟预报、预警、天气指数、空气质量、时光机、GeoAPI、天文、控制台API
+
+| 请求量(每月) | 价格(每次请求) |
+|---|---|
+| 0~5万 | **免费** |
+| 之后的 95万 | CNY 0.0007 |
+| 之后的 400万 | CNY 0.0005 |
+| 之后的 500万 | CNY 0.00035 |
+| 之后的 4000万 | CNY 0.00015 |
+| 之后的 5000万 | CNY 0.0001 |
+| 超过 1亿 | 联系我们 |
+
+### 其他服务
+
+- **台风和海洋**：0~100万次，CNY 0.003/次
+- **太阳辐照**：0~10万次，CNY 0.3/次
+
+详细定价请参考：[和风天气定价页面](https://dev.qweather.com/docs/finance/pricing/)
 
 ## 技术说明
 
